@@ -1,0 +1,172 @@
+/*プログラミングの世界ではシンプルが一番なので、なるべくごちゃごちゃしないようにclassやidは最小限に抑える。インデント(字下げ)もしっかり行う*/
+/*何かに困ったときはfloat,margin,padding等全て外してみること。そうすればレイアウトは簡潔にブラウザで表示されるはずなので、
+非常に簡単に問題を考えることができる。また、予想外の結果が反映された時にはcommon.cssなど全体にかかっているcssが作用していることが多いので、
+なにかあったときは一度そこのcssの設定を確認する。*/
+/*possitionでの位置決定(absolute,relative)などでの絶対的な配置は使い方に注意する。
+あまり多用しすぎるとレイアウトを崩壊させることになる。基本はfloat:leftで全てレイアウトを完成させることはできます。*/
+/*だからと言ってmarginを使いすぎてごちゃごちゃとしないこと。margin:10pxなどの上下左右にかかってくるものは普段あまり使うべきでないでしょう。
+使っているとそのうちに他の場所でmarginを指定したときに意味がかぶってしまうことがあります。後で見たときの分かりやすさを重視してください。*/
+/*コメントの二重の入れ子を利用すると動作が不完全になるので注意!!!*/
+
+*{
+	/*リセットスタイル:ブラウザによってmarginの初期値が決まっているため0にする。これをしないとヘッダー・フッターが両端にくっつかない。*/
+	padding:0;
+	margin:0;
+	border:0;
+}
+header{
+	/*headerの配色*/
+	background-color:#8FBC8F;/*IE9用*/
+	background:-moz-linear-gradient(#90EE90,#8FBC8F);/*firefox用*/
+	background:-webkit-gradient(linear,left top,left bottom,from(#90EE90),to(#8FBC8F));/*safari,googlechrome用*/
+	background:linear-gradient(#90EE90,#8FBC8F);
+	
+	width:100%;
+	min-width:900px;
+	height:180px;
+}
+#header{
+	width:900px;
+	margin:auto;
+}
+header>div>div{
+	margin:10px;
+}
+
+#banner{
+	float:left;
+	width: 320px;
+	margin-top:15px;
+}
+footer{
+	clear:both;
+	/*footerの配色*/
+	background-color:#32CD32;
+	background:-moz-linear-gradient(#32CD32,#2E8B57);
+	background:-webkit-gradient(linear,left top,left bottom,from(#32CD32),to(#2E8B57));
+	background:linear-gradient(#32CD32,#2E8B57);
+	min-width:900px;
+	height:100px;
+}
+#footer{
+	width:900px;
+	padding:20px;
+	margin:auto;
+}
+footer>div>div{
+	margin-left:40px;
+}
+body{
+	background-image:url('../images/main/background.jpg');
+	font-family:"Meiryo UI";}
+h1{
+	border-left-color:#8FEA8F;
+	border-left-width:10px;
+	border-left-style:solid;
+	color:#555555;
+	font-size:35px;
+}
+h2{
+	border-left-color:#994444;
+	border-left-width:10px;
+	border-left-style:solid;
+	border-radius:3px;
+	border-bottom-color:gold;
+	border-bottom-width:3px;
+	border-bottom-style:solid;
+	font-size:20px;
+	color:#555555;
+	margin:10px;
+}
+h2#imagetitle{
+	border-bottom-color:transparent;/*透明(上のh2のborder-bottom-colorを打ち消す)*/
+	border-left-width:0px;
+	margin-left:0px;
+}
+h3{
+	border-bottom-style:double;
+	border-bottom-width:2px;
+	border-bottom-color:black;
+	color:#333333;
+}
+p{
+	line-height:30px;/*行間30px*/
+	margin-left:20px;
+	margin-right:20px;
+}
+strong{
+	color:red;
+}
+ul li{
+	list-style:none;/*ulのみデフォルトのlist-styleがnoneです*/
+}
+.list_style{
+	list-style-image:url('../images/path3001.png');
+}
+#main{
+/*ダイナミックウェブテンプレートにclass="main"を付けていないのでhtmlを作成するたびにつけること*/
+	width:900px;
+	margin:auto;
+	background-color:#FFFFFF;
+	padding-bottom:20px;
+}
+
+#main:after{
+	/*すべての要素にfloatがかかっているとmainの背景が表示されなくなってしまうため、表示をする対策
+	詳しくはhttp://www.fsiki.com/archive/css-doc/float.html*/
+	/*"clearfix"と呼ばれる非常に重要なCSSの使い方,たとえば上記にあるようなmainに背景を付けたい場合、一筋縄ではいかない。
+	divの中身を全てfloatしていると高さがなくなってしまうため背景が付けられなくなってしまうからである。これを加えることでdivタグに高さを付ける*/
+	content:"";/*mainの後に表示する内容(何も表示しない)*/
+	display:block;/*ブロックレベル要素にすることでmainに高さを持たせる*/
+	clear:both;/*回り込みを解除することで背景と同じ次元の位置に表示させる(floatがかかったままでは背景から"浮いてしまう"という意味になってしまう)*/
+}
+#layout{
+	padding-left:10px;
+	padding-right:10px;
+}
+table {
+	background: #ffffff;
+	border-left: #666666 1px solid;
+	border-collapse: collapse;
+	color:#333333;
+} 
+table th{
+	background:#333333 url('../images/table/bg_header.jpg');
+	border-bottom: #666666 1px solid;
+	border-top: #666666 1px solid;
+	border-right:#666666 1px solid;
+	text-align: center;
+	padding:5px;
+	color:#ffffff;
+} 
+table td{
+	background: #ffffff url('../images/table/line1.gif') no-repeat;
+	border-bottom:#666666 1px solid;
+	border-right:#666666 1px solid;
+	text-align: center;
+	padding: 10px;
+}
+#width1{
+	width:250px;
+}
+#back{
+	background-color:red;
+	width:300px;
+	height:60px;
+}
+
+/*共通して使える便利なCSS*/
+.float{
+	float:left;
+}
+.clear{
+	clear:both;
+}
+.display_block{
+	display:block;
+}
+
+/*IE8以前でHTML5の仕様に対応するためのCSS*/
+article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{
+	display:block;
+}
